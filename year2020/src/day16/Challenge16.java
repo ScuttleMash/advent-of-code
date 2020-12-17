@@ -1,10 +1,10 @@
 package day16;
 
-import day16.solution.domain.Criteria;
-import day16.solution.domain.DataPerIndex;
-import day16.solution.domain.Ticket;
-import day16.solution.parsers.CriteriaParser;
-import day16.solution.parsers.TicketParser;
+import day16.domain.Criteria;
+import day16.domain.DataPerIndex;
+import day16.domain.Ticket;
+import day16.parsers.CriteriaParser;
+import day16.parsers.TicketParser;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -35,8 +35,8 @@ public class Challenge16 {
     public String solution1() {
         System.out.println("-------------- Running y2020-d16-1...");
 
-        List<Criteria> criteria = CriteriaParser.parse(RawData.criteria);
-        List<Ticket> tickets = TicketParser.parse(RawData.otherTickets);
+        List<Criteria> criteria = CriteriaParser.parse(RawData16.criteria);
+        List<Ticket> tickets = TicketParser.parse(RawData16.otherTickets);
 
         long ticketScanningErrorRate = tickets.stream()
                 .mapToLong(ticket -> ticket.getInvalidValuesSum(criteria))
@@ -48,11 +48,11 @@ public class Challenge16 {
     public String solution2() {
         System.out.println("-------------- Running y2020-d16-2...");
 
-        List<Criteria> criteria = CriteriaParser.parse(RawData.criteria);
-        List<Ticket> validTickets = TicketParser.parse(RawData.otherTickets).stream()
+        List<Criteria> criteria = CriteriaParser.parse(RawData16.criteria);
+        List<Ticket> validTickets = TicketParser.parse(RawData16.otherTickets).stream()
                 .filter(ticket -> ticket.isValid(criteria))
                 .collect(toList());
-        Ticket myTicket = TicketParser.parse(RawData.myTicket)
+        Ticket myTicket = TicketParser.parse(RawData16.myTicket)
                 .get(0);
 
         DataPerIndex dataPerIndex = new DataPerIndex(validTickets);

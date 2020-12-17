@@ -1,7 +1,7 @@
-package day16.solution.parsers;
+package day16.parsers;
 
-import day16.solution.domain.Criteria;
-import day16.solution.domain.Range;
+import day16.domain.Criteria;
+import day16.domain.Range;
 
 import java.util.List;
 import java.util.regex.Matcher;

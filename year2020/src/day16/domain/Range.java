@@ -1,4 +1,4 @@
-package day16.solution.domain;
+package day16.domain;
 
 public class Range {
 

@@ -1,6 +1,6 @@
 package day16;
 
-public class RawData {
+public class RawData16 {
 
     public static final String criteria =
             """

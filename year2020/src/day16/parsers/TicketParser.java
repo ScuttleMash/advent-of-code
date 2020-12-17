@@ -1,6 +1,6 @@
-package day16.solution.parsers;
+package day16.parsers;
 
-import day16.solution.domain.Ticket;
+import day16.domain.Ticket;
 
 import java.util.List;
 
