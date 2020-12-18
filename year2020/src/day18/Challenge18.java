@@ -1,6 +1,9 @@
 package day18;
 
 import day18.domain.Equation;
+import day18.domain.solvers.AdditionBeforeMultiplicationSolver;
+import day18.domain.solvers.LeftToRightSolver;
+import day18.domain.solvers.Solver;
 import day18.parsers.EquationParser;
 
 import java.time.LocalTime;
@@ -33,7 +36,8 @@ public class Challenge18 {
 
         List<Equation> equations = EquationParser.parse(RawData18.equations);
 
-        long result = equations.stream().mapToLong(Equation::solve).sum();
+        Solver solver = new LeftToRightSolver();
+        long result = equations.stream().mapToLong(equation -> equation.solve(solver)).sum();
 
         return "Sum of Equations: " + result;
     }
@@ -41,6 +45,11 @@ public class Challenge18 {
     public String solution2() {
         System.out.println("-------------- Running y2020-d18-2...");
 
-        return "???";
+        List<Equation> equations = EquationParser.parse(RawData18.equations);
+
+        Solver solver = new AdditionBeforeMultiplicationSolver();
+        long result = equations.stream().mapToLong(equation -> equation.solve(solver)).sum();
+
+        return "Sum of Equations: " + result;
     }
 }
