@@ -19,9 +19,9 @@ public class Challenge16 {
     public static final int CRITERIA = 20;
 
     public static void main(String[] args) {
-        Challenge16 challenge16 = new Challenge16();
-        execute(challenge16::solution1);
-        execute(challenge16::solution2);
+        Challenge16 challenge = new Challenge16();
+        execute(challenge::solution1);
+        execute(challenge::solution2);
     }
 
     public static void execute(Supplier<String> solution) {

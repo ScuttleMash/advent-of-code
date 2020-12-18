@@ -1,20 +1,15 @@
-package day17;
-
-import day17.domain.ActivePoint;
-import day17.domain.EnergySource;
-import day17.parsers.PointParser;
+package day19;
 
 import java.time.LocalTime;
-import java.util.List;
 import java.util.function.Supplier;
 
 import static java.time.Duration.between;
 import static java.time.LocalTime.now;
 
-public class Challenge17 {
+public class Challenge19 {
 
     public static void main(String[] args) {
-        Challenge17 challenge = new Challenge17();
+        Challenge19 challenge = new Challenge19();
         execute(challenge::solution1);
         execute(challenge::solution2);
     }
@@ -28,22 +23,14 @@ public class Challenge17 {
     }
 
     public String solution1() {
-        System.out.println("-------------- Running y2020-d17-1...");
+        System.out.println("-------------- Running y2020-d19-1...");
 
-        List<ActivePoint> points = PointParser.parse(RawData17.conwayInput);
-
-        int result = EnergySource.inThirdDimension(points).cycle(6).getCubeCount();
-
-        return "Cube Count: " + result;
+        return "???";
     }
 
     public String solution2() {
-        System.out.println("-------------- Running y2020-d17-2...");
+        System.out.println("-------------- Running y2020-d19-2...");
 
-        List<ActivePoint> points = PointParser.parse(RawData17.conwayInput);
-
-        int result = EnergySource.inFourthDimension(points).cycle(6).getCubeCount();
-
-        return "Cube Count: " + result;
+        return "???";
     }
 }

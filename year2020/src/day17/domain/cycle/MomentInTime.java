@@ -52,13 +52,3 @@ public class MomentInTime {
         return new DimensionBorder(dimension, summary.getMin() - 1, summary.getMax() + 1);
     }
 }
-
-/**
- *  * int cubeCount = threeDimensionsGridAroundCell.countActives();
- *  * if (active && (cubeCount == 3 || cubeCount == 4)) {
- *  * return true;
- *  * } else if (!active && cubeCount == 3) {
- *  * return true;
- *  * } else {
- *  * return false;
- */

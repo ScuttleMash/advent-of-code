@@ -19,7 +19,6 @@ public class Dimension {
     private final Dimension lowerDimension;
 
     public Dimension(int min, int max, Dimension lowerDimension) {
-//        System.out.println("===== Created dimension with range " + min + "..." + max);
         this.min = min;
         this.max = max;
         this.lowerDimension = lowerDimension;
@@ -38,13 +37,10 @@ public class Dimension {
                     if (points.get(0).getDimension() == positionPlus.size()) {
                         Collections.reverse(positionPlus);
                         List<ActivePoint> nearby = points.stream().filter(point -> point.isAdjacentTo(positionPlus)).collect(toList());
-//                        System.out.println("Point " + positionPlus.get(0) +","+ positionPlus.get(1) +","+ positionPlus.get(2) + " has " + nearby.size());
                         boolean active = nearby.stream().anyMatch(point -> point.isEqualTo(positionPlus));
                         if (active && (nearby.size() == 3 || nearby.size() == 4)) {
-//                            System.out.println("ACTIVE!");
                             result.add(new ActivePoint(positionPlus));
                         } else if (!active && nearby.size() == 3) {
-//                            System.out.println("Becoming active...");
                             result.add(new ActivePoint(positionPlus));
                         }
                     } else {
