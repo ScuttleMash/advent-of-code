@@ -1,103 +1,50 @@
 package day20.domain;
 
+import day20.domain.border.*;
+
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.List.of;
 
 public class Image {
 
-    private final int tileId;
-    private final ReversableString top;
-    private final ReversableString right;
-    private final ReversableString bottom;
-    private final ReversableString left;
+    private final long tileId;
+    private final String data;
 
-    public Image(int tileId, String top, String right, String bottom, String left) {
-        this.tileId = tileId;
-        this.top = new ReversableString(top);
-        this.right = new ReversableString(right);
-        this.bottom = new ReversableString(bottom);
-        this.left = new ReversableString(left);
+    private List<Border> borders;
+
+    public Image(Image image) {
+        this.tileId = image.tileId;
+        this.data = image.data;
+        this.borders = of(new BorderTop(this), new BorderRight(this), new BorderBottom(this), new BorderLeft(this));
     }
 
-    public int getTileId() {
+    public Image(long tileId, String data) {
+        this.tileId = tileId;
+        this.data = data;
+        this.borders = of(new BorderTop(this), new BorderRight(this), new BorderBottom(this), new BorderLeft(this));
+    }
+
+    public long getTileId() {
         return tileId;
     }
 
-    public boolean hasMatch(Image that) {
+    List<Border> getBorders() {
+        return borders;
+    }
+
+    public boolean isAdjacentTo(Image that) {
         if (this.equals(that)) {
             return false;
         }
 
-        if (this.top.asIs().equals(that.top.asIs())) {
-            return true;
-        } else if (this.top.asIs().equals(that.right.asIs())) {
-            return true;
-        } else if (this.top.asIs().equals(that.bottom.asIs())) {
-            return true;
-        } else if (this.top.asIs().equals(that.left.asIs())) {
-            return true;
-        } else if (this.right.asIs().equals(that.top.asIs())) {
-            return true;
-        } else if (this.right.asIs().equals(that.right.asIs())) {
-            return true;
-        } else if (this.right.asIs().equals(that.bottom.asIs())) {
-            return true;
-        } else if (this.right.asIs().equals(that.left.asIs())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.top.asIs())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.right.asIs())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.bottom.asIs())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.left.asIs())) {
-            return true;
-        } else if (this.left.asIs().equals(that.top.asIs())) {
-            return true;
-        } else if (this.left.asIs().equals(that.right.asIs())) {
-            return true;
-        } else if (this.left.asIs().equals(that.bottom.asIs())) {
-            return true;
-        } else if (this.left.asIs().equals(that.left.asIs())) {
-            return true;
-        } else if (this.top.asIs().equals(that.top.reversed())) {
-            return true;
-        } else if (this.top.asIs().equals(that.right.reversed())) {
-            return true;
-        } else if (this.top.asIs().equals(that.bottom.reversed())) {
-            return true;
-        } else if (this.top.asIs().equals(that.left.reversed())) {
-            return true;
-        } else if (this.right.asIs().equals(that.top.reversed())) {
-            return true;
-        } else if (this.right.asIs().equals(that.right.reversed())) {
-            return true;
-        } else if (this.right.asIs().equals(that.bottom.reversed())) {
-            return true;
-        } else if (this.right.asIs().equals(that.left.reversed())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.top.reversed())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.right.reversed())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.bottom.reversed())) {
-            return true;
-        } else if (this.bottom.asIs().equals(that.left.reversed())) {
-            return true;
-        } else if (this.left.asIs().equals(that.top.reversed())) {
-            return true;
-        } else if (this.left.asIs().equals(that.right.reversed())) {
-            return true;
-        } else if (this.left.asIs().equals(that.bottom.reversed())) {
-            return true;
-        } else if (this.left.asIs().equals(that.left.reversed())) {
-            return true;
-        }
-        return false;
+        return this.borders.stream().anyMatch(border -> border.findMatchingBorders(that.borders).isMatch());
     }
 
     @Override
     public String toString() {
-        return "Image: " + tileId + "\n Up - " + top + "\n Right - " + right + "\n Down - " + bottom + "\n Left - " + left;
+        return "Image: " + tileId;
     }
 
     @Override
@@ -111,5 +58,9 @@ public class Image {
     @Override
     public int hashCode() {
         return Objects.hash(tileId);
+    }
+
+    public String getContent() {
+        return data;
     }
 }

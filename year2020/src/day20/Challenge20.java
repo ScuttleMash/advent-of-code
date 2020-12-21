@@ -1,10 +1,10 @@
 package day20;
 
 import day20.domain.Image;
+import day20.domain.Picture;
 import day20.parsers.ImageParser;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -32,14 +32,11 @@ public class Challenge20 {
 
         List<Image> images = ImageParser.parse(RawData20.raw);
 
-        List<Image> corners = new ArrayList<>();
-        for (Image image : images) {
-            long count = images.stream().filter(image::hasMatch).count();
-            if (count == 2) {
-                corners.add(image);
-            }
-        }
-        long result = corners.stream().mapToLong(Image::getTileId).reduce(1, (left, right) -> left * right);
+        long result = new Picture(images)
+                .getCorners()
+                .stream()
+                .mapToLong(Image::getTileId)
+                .reduce(1, (left, right) -> left * right);
 
         return "Product of Corners: " + result;
     }
@@ -47,6 +44,8 @@ public class Challenge20 {
     public String solution2() {
         System.out.println("-------------- Running y2020-d20-2...");
 
-        return "???";
+        List<Image> images = ImageParser.parse(RawData20.test);
+
+        return "Objects != Sea Monsters: ???";
     }
 }
